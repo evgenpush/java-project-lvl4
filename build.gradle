@@ -9,6 +9,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'checkstyle'
+    id 'io.ebean' version '13.6.0'
 }
 
 repositories {
@@ -28,6 +30,15 @@ dependencies {
     implementation 'org.slf4j:slf4j-simple:1.7.36'
     // This dependency is used by the application.
     implementation 'com.heroku.sdk:heroku-maven-plugin:3.0.3'
+    implementation 'com.h2database:h2:1.4.200'
+    implementation 'io.ebean:ebean:12.11.5'
+    implementation 'io.ebean:ebean-querybean:12.11.5'
+    implementation 'io.ebean:ebean-annotation:7.3'
+    implementation 'io.ebean:ebean-migration:12.11.2'
+    implementation 'io.ebean:ebean-ddl-generator:12.11.5'
+
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.5'
+    implementation 'javax.activation:activation:1.1.1'
 }
 
 application {
@@ -42,3 +53,8 @@ tasks.named('test') {
 
 task stage(dependsOn:['clean', 'installDist'])
 installDist.mustRunAfter clean
+
+task generateMigrations(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'hexlet.code.MigrationGenerator'
+}

@@ -20,7 +20,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        Javalin app =getApp();
+        Javalin app = getApp();
         app.start(getPort());
         app.get("/", ctx -> ctx.result("Hello World"));
     }
