@@ -8,7 +8,7 @@ check-updates:
 	./gradlew dependencyUpdates
 
 lint:
-	./gradlew checkstyleMain checkstyleTest
+	./gradlew checkstyleMain
 
 test:
 	./gradlew test
